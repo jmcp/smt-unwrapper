@@ -1,0 +1,30 @@
+{
+  "attributeName": "proximity.to.hightide.line",
+  "data": {
+    "coastalDistanceMetres": 478.39,
+    "coastalWithin50Metres": false,
+    "coastalWithin150Metres": false,
+    "coastalWithin200Metres": false,
+    "coastalWithin250Metres": false,
+    "coastalWithin300Metres": false,
+    "coastalWithin350Metres": false,
+    "coastalWithin400Metres": false,
+    "coastalWithin450Metres": false,
+    "coastalWithin500Metres": true
+  },
+  "metadata": {
+    "owner": "Liger Software",
+    "buildDate": "2023-08-30",
+    "kafkaIngestionDatetime": "2023-09-12T22:51:04",
+    "source": [
+      {
+        "description": "Geospatial provider 1",
+        "version": "2021.12"
+      },
+      {
+        "description": "Geospatila provider 2",
+        "version": "2023.05"
+      }
+    ]
+  }
+}

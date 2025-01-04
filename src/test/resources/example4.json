@@ -1,0 +1,24 @@
+{
+  "attributeName": "council.zoning",
+  "data": {
+    "residential": true,
+    "zonings": [
+      {
+        "zoneCode": "10",
+        "zoneLabel1": "Low Density Residential",
+        "zoneLabel2": "Low Density Residential"
+      }
+    ]
+  },
+  "metadata": {
+    "owner": "Liger Software",
+    "buildDate": "2022-06-20",
+    "kafkaIngestionDatetime": "2023-10-26T08:41:07",
+    "source": [
+      {
+        "description": "Xoning source of truth",
+        "version": "2022.06"
+      }
+    ]
+  }
+}

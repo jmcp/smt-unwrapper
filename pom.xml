@@ -1,0 +1,215 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.jmcpdotcom</groupId>
+  <artifactId>transform-unwrapper</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>Unwrapper</name>
+  <description>
+      A Kafka Connect Simple Message Transform to unwrap hierarchical elements in a record's value element. The returned object field names are the node names joined with `_`. The only configurable option is the log level, which defaults to INFO.
+  </description>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <avro.version>1.12.0</avro.version>
+    <kafka.version>3.6.0</kafka.version>
+    <java.version>17</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.version>3.11.0</maven.compiler.version>
+    <maven.shade.version>3.6.0</maven.shade.version>
+    <jacoco.min.line.coverage>0.00</jacoco.min.line.coverage>
+    <jacoco.min.branch.coverage>0.00</jacoco.min.branch.coverage>
+    <jacoco.excludes/>
+    <junit-jupiter.version>5.11.3</junit-jupiter.version>
+    <lombok.version>1.18.28</lombok.version>
+
+    <checkstyle.puppycrawl.version>9.1</checkstyle.puppycrawl.version>
+
+    <checkstyle.plugin.version>3.1.2</checkstyle.plugin.version>
+    <checkstyle.check.phase>process-resources</checkstyle.check.phase>
+    <checkstyle.consoleOutput>true</checkstyle.consoleOutput>
+
+    <checkstyle.default.skip>false</checkstyle.default.skip>
+    <checkstyle.default.includeTestSourceDirectory>true</checkstyle.default.includeTestSourceDirectory>
+    <checkstyle.default.violationSeverity>warning</checkstyle.default.violationSeverity>
+    <checkstyle.default.failsOnError>true</checkstyle.default.failsOnError>
+
+    <checkstyle.custom.skip>true</checkstyle.custom.skip>
+    <checkstyle.custom.includeTestSourceDirectory>true</checkstyle.custom.includeTestSourceDirectory>
+    <checkstyle.custom.suppressionsLocation />
+    <checkstyle.custom.violationSeverity>warning</checkstyle.custom.violationSeverity>
+    <checkstyle.custom.failsOnError>true</checkstyle.custom.failsOnError>
+
+    <maven.jar.plugin.phase>package</maven.jar.plugin.phase>
+
+    <assertj.version>3.24.2</assertj.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.avro</groupId>
+      <artifactId>avro</artifactId>
+      <version>${avro.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-api</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-transforms</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-json</artifactId>
+      <version>${kafka.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-core</artifactId>
+      <version>2.18.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit-jupiter.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit-jupiter.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.reload4j</groupId>
+      <artifactId>reload4j</artifactId>
+      <version>1.2.19</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.5.12</version>
+      <scope>compile</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.8.11</version>
+	<executions>
+          <execution>
+            <id>coverage-initialize</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>coverage-report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>check</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <rule>
+                  <element>CLASS</element>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>${jacoco.min.branch.coverage}</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>${jacoco.min.branch.coverage}</minimum>
+                    </limit>
+                  </limits>
+		</rule>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+	<configuration>
+          <excludes>
+            <exclude>${jacoco.excludes}</exclude>
+          </excludes>
+	</configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven.compiler.version}</version>
+        <configuration>
+          <source>11</source>
+          <target>11</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.4.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven.shade.version}</version>
+        <configuration>
+            <minimizeJar>true</minimizeJar>
+            <createDependencyReducedPom>true</createDependencyReducedPom>
+        </configuration>
+        <executions>
+          <execution>
+            <id>assemble-all</id>
+            <phase>package</phase>
+            <goals>
+                <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

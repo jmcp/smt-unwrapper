@@ -1,0 +1,26 @@
+{
+  "attributeName": "usage.type",
+  "data": {
+    "agedCareFacility": false,
+    "multipleOccupancy": false,
+    "ndisSIL": false,
+    "servicedApartment": true,
+    "studentAccommodation": false,
+    "UUID": "d857b0f4-33e7-4d22-b345-91c0062faee7"
+  },
+  "metadata": {
+    "owner": "Liger Software",
+    "buildDate": "2022-07-21",
+    "kafkaIngestionDatetime": "2023-10-31T04:24:51",
+    "source": [
+      {
+        "description": "First Source Of Data",
+        "version": "2022-07-21"
+      },
+      {
+        "description": "Subsequent Source 1",
+        "version": "2022-07-21"
+      }
+    ]
+  }
+}

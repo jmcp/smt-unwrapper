@@ -1,0 +1,30 @@
+{
+  "attributeName": "transmission.lines",
+  "data": {
+    "distance": 21.83,
+    "predicate": "50 meter zone",
+    "featureType": "Transmission Line",
+    "description": "A network of wires and insulators used to connect and transport high voltage electricity from generators to large demand customers and the lower voltage electricity distribution network",
+    "class": "Overhead",
+    "name": "Sydney North",
+    "capacityKV": 132,
+    "state": "New South Wales",
+    "spatialConfidence": 4,
+    "revisedDate": "2012-07-10"
+  },
+  "metadata": {
+    "owner": "Liger Software",
+    "buildDate": "2023-08-30",
+    "kafkaIngestionDatetime": "2023-09-12T22:49:55",
+    "source": [
+      {
+        "description": "Geospatial source 1",
+        "version": "Delivered after 2000"
+      },
+      {
+        "description": "Another geospatial source",
+        "version": "2023.05"
+      }
+    ]
+  }
+}
