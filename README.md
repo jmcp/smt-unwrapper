@@ -8,12 +8,21 @@ The only configurable option is the log level, which defaults to *INFO*.
 
 This work is covered by the Hippocratic Licence v3, as documented in [LICENSE.md](LICENSE.md).
 
-
 ## Installation
 
-Building the `JAR` file requires both Maven and Java to be installed. The `JAR` file can be built using Maven: `mvn package`
+Building this project requires Java 17 to be installed, and the use of Maven. If you have Maven v3.9.2 or better
+available to you locally, then run `mvn package` to compile and generate the package. Alternatively, you can use the
+Maven wrapper included with this repo.
 
-The project has been tested and built using Java 17 and Maven 3.9.2.
+In Unix-like environments (Linux, Mac OS etc) run
+
+`./mvnw package`
+
+On Windows you can run
+
+`.\mvnw.cmd package`
+
+To find out more about the Maven wrapper, please visit https://www.baeldung.com/maven-wrapper
 
 ## Usage
 
