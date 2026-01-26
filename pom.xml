@@ -44,7 +44,7 @@
 
     <maven.jar.plugin.phase>package</maven.jar.plugin.phase>
 
-    <assertj.version>3.24.2</assertj.version>
+    <assertj.version>3.27.7</assertj.version>
   </properties>
 
   <dependencies>
